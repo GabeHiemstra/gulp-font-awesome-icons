@@ -1,0 +1,24 @@
+{
+  "name": "gulp-font-awesome-icons",
+  "version": "1.0.0",
+  "description": "Dispaly a list of font-awesome icons used in your files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabeHiemstra/gulp-font-awesome-icons.git"
+  },
+  "keywords": [
+    "font-awesome",
+    "icons",
+    "fonts"
+  ],
+  "author": "Gabe Hiemstra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabeHiemstra/gulp-font-awesome-icons/issues"
+  },
+  "homepage": "https://github.com/GabeHiemstra/gulp-font-awesome-icons#readme"
+}
