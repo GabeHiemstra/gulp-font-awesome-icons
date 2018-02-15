@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/GabeHiemstra/gulp-font-awesome-icons/issues"
   },
-  "homepage": "https://github.com/GabeHiemstra/gulp-font-awesome-icons#readme"
+  "homepage": "https://github.com/GabeHiemstra/gulp-font-awesome-icons#readme",
+  "dependencies": {
+    "del": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "htmlparser2": "^3.9.2",
+    "print": "^1.0.2",
+    "through2": "^2.0.3"
+  }
 }
