@@ -22,8 +22,8 @@ function fontAwesomeIcons(options) {
         onopentag: function onopentag(name, attribs) {
             if(undefined !== attribs.class){
                 if(attribs.class.match(/(fa[rslb] fa-[a-z0-9\-]+)/gi)){
-                    var fa_type = attribs.class.replace(/(fa[rslb])\s+(fa-[a-z0-9\-]+)/gi, "$1");
-                    var fa_class = camelCase(attribs.class.replace(/(fa[rslb])\s+(fa-[a-z0-9\-]+)/gi, "$2"));
+                    var fa_type = attribs.class.replace(/.*?(fa[rslb])\s+(fa-[a-z0-9\-]+).*/gi, "$1");
+                    var fa_class = camelCase(attribs.class.replace(/.*?(fa[rslb])\s+(fa-[a-z0-9\-]+).*/gi, "$2"));
                     switch(fa_type){
                         case 'fal': // light
                             usedImageNames.fal.push(options.splitdir + '_partials-fal/' + fa_class + '.js');
@@ -58,13 +58,13 @@ function fontAwesomeIcons(options) {
             return callback(new gutil.PluginError(PLUGIN_NAME, 'Streaming not supported'));
         }
 
+        //console.log(chunk.path);
         htmlParser.write(String(chunk.contents));
 
-        self.push(chunk);
+        //self.push(chunk);
         callback();
-    });
 
-    transform.on('finish', function () {
+    }).on('finish', function () {
 
         this.icons = [];
         this.icons.push(options.splitdir + 'fontawesome.js');
