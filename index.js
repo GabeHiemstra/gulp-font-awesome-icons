@@ -7,12 +7,16 @@ var through2 = require('through2'),
 var PLUGIN_NAME = 'gulp-font-awesome-icons';
 
 function fontAwesomeIcons(options) {
-    options = options || {log: true, delete: false};
+    options = options || {splitdir: 'js/'};
     function addUsed(imageUrl) {
         usedImageNames.push(filename);
     }
 
-    var usedImageNames = [];
+    var usedImageNames = {};
+    usedImageNames.fal = [];
+    usedImageNames.far = [];
+    usedImageNames.fas = [];
+    usedImageNames.fab = [];
 
     var htmlParser = new htmlparser2.Parser({
         onopentag: function onopentag(name, attribs) {
@@ -22,16 +26,16 @@ function fontAwesomeIcons(options) {
                     var fa_class = camelCase(attribs.class.replace(/(fa[rslb])\s+(fa-[a-z0-9\-]+)/gi, "$2"));
                     switch(fa_type){
                         case 'fal': // light
-                            usedImageNames.push('node_modules/@fortawesome/fontawesome-pro-light/' + fa_class + '.js');
+                            usedImageNames.fal.push(options.splitdir + '_partials-fal/' + fa_class + '.js');
                         break;
                         case 'far': // regular
-                            usedImageNames.push('node_modules/@fortawesome/fontawesome-pro-regular/' + fa_class + '.js');
+                            usedImageNames.far.push(options.splitdir + '_partials-far/' + fa_class + '.js');
                         break;
                         case 'fas': // solid
-                            usedImageNames.push('node_modules/@fortawesome/fontawesome-pro-solid/' + fa_class + '.js');
+                            usedImageNames.fas.push(options.splitdir + '_partials-fas/' + fa_class + '.js');
                         break;
                         case 'fab': // brands
-                            usedImageNames.push('node_modules/@fortawesome/fontawesome-pro-brands/' + fa_class + '.js');
+                            usedImageNames.fab.push(options.splitdir + '_partials-fab/' + fa_class + '.js');
                         break;
                         //default:
                         //    usedImageNames.push('unkown: ' + fa_type);
@@ -62,14 +66,38 @@ function fontAwesomeIcons(options) {
 
     transform.on('finish', function () {
 
-        if (usedImageNames.length && options.log) {
+        this.icons = [];
 
-            /*print(usedImageNames, {
-                  leftPadding: 2,
-                  rightPadding: 3
-                });*/
+        if(usedImageNames.fal.length){
+            this.icons.unshift(options.splitdir + '_partials-fal/_header.js');
+            for(var i = 0; i < usedImageNames.fal.length; i++){
+                this.icons.push(usedImageNames.fal[i]);
+            }
+            this.icons.push(options.splitdir + '_partials-fal/_footer.js');
+        }
 
-            this.icons = usedImageNames;
+        if(usedImageNames.far.length){
+            this.icons.unshift(options.splitdir + '_partials-far/_header.js');
+            for(var i = 0; i < usedImageNames.far.length; i++){
+                this.icons.push(usedImageNames.far[i]);
+            }
+            this.icons.push(options.splitdir + '_partials-far/_footer.js');
+        }
+
+        if(usedImageNames.fas.length){
+            this.icons.unshift(options.splitdir + '_partials-fas/_header.js');
+            for(var i = 0; i < usedImageNames.fas.length; i++){
+                this.icons.push(usedImageNames.fas[i]);
+            }
+            this.icons.push(options.splitdir + '_partials-fas/_footer.js');
+        }
+
+        if(usedImageNames.fab.length){
+            this.icons.unshift(options.splitdir + '_partials-fab/_header.js');
+            for(var i = 0; i < usedImageNames.fab.length; i++){
+                this.icons.push(usedImageNames.fab[i]);
+            }
+            this.icons.push(options.splitdir + '_partials-fab/_footer.js');
         }
     });
 
