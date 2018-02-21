@@ -1,6 +1,6 @@
 {
   "name": "gulp-font-awesome-icons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dispaly a list of font-awesome icons used in your files",
   "main": "index.js",
   "scripts": {
