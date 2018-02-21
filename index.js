@@ -69,7 +69,7 @@ function fontAwesomeIcons(options) {
         this.icons = [];
 
         if(usedImageNames.fal.length){
-            this.icons.unshift(options.splitdir + '_partials-fal/_header.js');
+            this.icons.push(options.splitdir + '_partials-fal/_header.js');
             for(var i = 0; i < usedImageNames.fal.length; i++){
                 this.icons.push(usedImageNames.fal[i]);
             }
@@ -77,7 +77,7 @@ function fontAwesomeIcons(options) {
         }
 
         if(usedImageNames.far.length){
-            this.icons.unshift(options.splitdir + '_partials-far/_header.js');
+            this.icons.push(options.splitdir + '_partials-far/_header.js');
             for(var i = 0; i < usedImageNames.far.length; i++){
                 this.icons.push(usedImageNames.far[i]);
             }
@@ -85,7 +85,7 @@ function fontAwesomeIcons(options) {
         }
 
         if(usedImageNames.fas.length){
-            this.icons.unshift(options.splitdir + '_partials-fas/_header.js');
+            this.icons.push(options.splitdir + '_partials-fas/_header.js');
             for(var i = 0; i < usedImageNames.fas.length; i++){
                 this.icons.push(usedImageNames.fas[i]);
             }
@@ -93,7 +93,7 @@ function fontAwesomeIcons(options) {
         }
 
         if(usedImageNames.fab.length){
-            this.icons.unshift(options.splitdir + '_partials-fab/_header.js');
+            this.icons.push(options.splitdir + '_partials-fab/_header.js');
             for(var i = 0; i < usedImageNames.fab.length; i++){
                 this.icons.push(usedImageNames.fab[i]);
             }
