@@ -67,6 +67,7 @@ function fontAwesomeIcons(options) {
     transform.on('finish', function () {
 
         this.icons = [];
+        this.icons.push(options.splitdir + 'fontawesome.js');
 
         if(usedImageNames.fal.length){
             this.icons.push(options.splitdir + '_partials-fal/_header.js');
