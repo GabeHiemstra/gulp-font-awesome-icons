@@ -1,5 +1,5 @@
 # gulp-font-awesome-icons
-Compose a Font Awesome javascript file containing core functionality and selected icons used only in your poject. This plugin is intended as a standalone task, meaning that the returned stream is not used, but instead a callback will contain the split files as a stream.
+Compose a Font Awesome 5 javascript file containing core functionality and selected icons used only in your poject. This plugin is intended as a standalone task, meaning that the returned stream is not used, but instead a callback will contain the split files as a stream.
 
 ## Initial steps
 This requires PHP. First download the latest Font Awesome 5+ package and extract the contents of .../svg-with-js/js/* to .../node_modules/gulp-font-awesome-icons/js/. Run php split-fontawesome.php. This should create 4 directories within js/, each containing the split files for the separate Font Awesome styles (light, regular, solid, brands).
