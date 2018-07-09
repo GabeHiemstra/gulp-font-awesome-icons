@@ -6,12 +6,14 @@ This requires PHP and must be executed after installing this module. Download th
 
 The above process should creates './js' with four sub-directories: ./\_partials-fas, \_partials-far, \_partials-fal and \_partials-fab. Each directory contains split files for separate Font Awesome icon styles (light, regular, solid, brands).
 
+If, for some reason, you fail to complete this, you can use the free version of Font Awesome, of which I provided the split-files in this package. Simply rename './demo-js' to './js' and you're all set! Of course, this provides limited functionality compared to the Pro package.
+
 ## Example
 The following example looks for HTML and PHP files within the 'app/html' directory (including sub-directories) and then scours through those files looking for HTML tags match font-awesome icons. Finally, it looks for icons in the file 'fontawesome-additional-icons.html'. Such a file is included in this package as an example.
 
 fontawesome-additional-icons.html can be used to manually set icons used by your project but not recognized by the plugin.
 
-The plugins takes one option 'splitdir', which is a directory containing the font-awesome split-files, needed to compact the final file. It defaults to the 'js/' sub-directory of the module itself, which is automatically created after walking processing the initial steps above.
+The plugin takes one option 'splitdir', which is a directory containing the font-awesome split-files, needed to compact the final file. It defaults to the 'js/' sub-directory of the module itself, which is automatically created after walking processing the initial steps above.
 
 The 'finish' callback is called when the gathering of used icons is completed and presents the 'icons' variable which is an array containing the path of the file containing icon code. The array is transformed into a gulp stream and is then concatenated to a single file and placed with 'src/js'.
 
