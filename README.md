@@ -1,22 +1,27 @@
 # gulp-font-awesome-icons
-Compose a Font Awesome 5 javascript file containing core functionality and selected icons used only in your poject. This plugin is intended as a standalone task, meaning that the returned stream is not used, but instead a callback will contain the split files as a stream.
+Compose a single and compact Font Awesome 5 javascript file containing only the icons you use in your project. This plugin is intended as a standalone task, meaning that the returned stream is not used, but instead a callback will contain the split files as a stream.
 
 ## Initial steps
-This requires PHP. First download the latest Font Awesome 5+ package and extract the contents of .../svg-with-js/js/* to .../node_modules/gulp-font-awesome-icons/js/. Navigate to the directory and run "php ./split-fontawesome.php". This should create 4 directories within js/, each containing the split files for the separate Font Awesome styles (light, regular, solid, brands).
+This requires PHP and must be executed after installing this module. Download the latest release of Font Awesome 5+ and extract the contents of .../svg-with-js/js/* to .../node_modules/gulp-font-awesome-icons/js/. Using a command-line tool, navigate to this directory and run "php ./split-fontawesome.php".
+
+The above process should create 4 directories: \_partials-fas, \_partials-far, \_partials-fal and \_partials-fab. Each directory contains split files for separate Font Awesome icon styles (light, regular, solid, brands).
 
 ## Example
-This example first creates the 'icons' task. Then it streams all files within /html/ and all subdirectories. 
+The following example looks for HTML and PHP files within the 'app/html' directory (including sub-directories) and then scours through those files looking for HTML tags match font-awesome icons. Finally, it looks for icons in the file 'fontawesome-additional-icons.html'. Such a file is included in this package as an example.
 
-After this the plugin is initialized, setting the split-directory by default to js/.
+Note: fontawesome-additional-icons.html can be used to manually set icons used by your project but not recognized by the plugin.
 
-When the finish callback is called, the property "icons" will contain an array of files that will be merged (using gulp-concat) and placed in the destination directory src/js.
+The plugins takes one option, splitdir, which is a sub-directory of the module which contains the font-awesome split-files, needed to compact the final file.
 
+The 'finish' callback is called when the gathering of used icons is completed and presents the 'icons' variable which is an array containing the path of the file containing icon code. The array is transformed into a gulp stream and is then concatenated to a single file and placed with 'src/js'.
+
+```js
 	var gulp = require('gulp');
 	var concat = require('gulp-concat');
 	var obsoleteImages = require('gulp-font-awesome-icons');
 
 	gulp.task('icons', function(){
-		gulp.src('app/html/**/*')
+		gulp.src(['app/html/**/*', 'fontawesome-additional-icons.html'])
 		  .pipe(faIcons({splitdir: 'node_modules/gulp-font-awesome-icons/js/'})) 
 		  .on('finish', function(){
 		    if( undefined !== this.icons && this.icons.length ) {
@@ -26,3 +31,4 @@ When the finish callback is called, the property "icons" will contain an array o
 		    }
 		  });
 	});
+```
